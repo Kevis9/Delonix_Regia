@@ -1,0 +1,53 @@
+{% extends "basic.html" %}  <!--#继承basic html-->
+{%block css%}
+
+{%load static%}
+ <link rel="stylesheet" href="{%static 'css/designforlogin.css'%}">
+{%endblock%}
+
+{%csrf_token%}
+{% block content %} <!--重写%block content%里面的内容-->
+
+<div class="header" id="head">
+  <div class="title">凤凰花开</div>
+</div>
+<form method="post">
+{% csrf_token %}
+    {% if msg %}
+    <p class="errors">{{msg}}</p>
+    {% endif %}
+
+    <div class="wrap" id="wrap">
+	<div class="logGet">
+			<!-- 头部提示信息 -->
+			{{login_form}}
+
+			<div class="logC">
+                <a href=""><button>登陆</button></a>
+            <hr>
+                 </div>
+         </div>
+		</div>
+</div>
+</form>
+<div class="footer" id="foot">
+  <div class="copyright">
+    <p>Copyright © 2018 Qunar.com Inc. All Rights Reserved.</p>
+    <div class="img">
+		<i class="icon"></i><span>联系邮箱:17wlhu@stu.edu.cn</span>
+	</div>
+
+	<div class="img">
+		<i class="icon1"></i><span>联系地址：汕头大学</span>
+	</div>
+
+	<div class="img">
+	  <i class="icon2"></i><span>联系电话：13502940913</span>
+	</div>
+
+
+  </div>
+
+</div>
+
+{% endblock %}

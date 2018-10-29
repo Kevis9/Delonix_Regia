@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>    
+  
+</head>
+<body>
+    <div id="app">
+        <h1>Welcome!</h1> 
+        <p v-text="name"></p>  
+        <p v-text="telephone"></p>  
+        <button @click="update_profile">修改个人资料</button>     
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                name:"",telephone:""
+            },
+            created:function(){
+                var str=window.location.href;
+                var url  = "http://127.0.0.1:8000/catalog/user/"+str[str.length-2]+"/get_profile/";
+                this.$http.get(url)
+                .then(function(response){                                                           
+                    res = JSON.parse(response.bodyText);
+                    this.name="姓名:"+res.name; //这个地方不知道为什么插值表达式渲染不了???
+                    this.telephone="电话:"+res.phonenum;
+                    
+                }).catch(function(){
+                    alert("服务器错误");
+                })
+            },
+        methods:{
+            update_profile:function(){
+                var str=window.location.href;
+                var url  = "http://127.0.0.1:8000/delonix_regia/"+str[str.length-2]+"/update_profile/";
+                window.location.href=url;
+            },
+        }
+
+        })
+    </script>
+</body>
+</html>

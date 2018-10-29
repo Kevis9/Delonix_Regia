@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script> 
+</head>
+<body>
+    <div id="app">
+        <form @submit.prevent="update_profile">
+            <label for="name">姓名:</label>
+            <input type="text" name="name" v-model="name">        
+            <label for="电话">电话</label>
+            <input type="text" name="phonenum" v-model="phonenum">
+            <input type="submit" name="submit" value="确认">
+        </form>
+    </div>
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            name:'',phonenum:''
+
+        },
+        created:(function(){
+                var str = window.location.href;              
+                var url = "http://127.0.0.1:8000/catalog/user/"+str[str.length-17]+"/update_profile/";
+                this.$http.get(url).then(function(response){
+                    res=JSON.parse(response.bodyText);
+                    this.name=res["name"];
+                    this.phonenum=res["phonenum"];
+                });
+        }),
+        methods:{
+            update_profile:function(){
+                var str = window.location.href;              
+                var url = "http://127.0.0.1:8000/catalog/user/"+str[str.length-17]+"/update_profile/";
+                this.$http.get(url);
+                var DjangoCookie = getCookie('csrftoken');
+                var senddate={"name":this.name, "phonenum":this.phonenum};
+                this.$http.post(url,senddate,{headers:{'X-CSRFToken':DjangoCookie}},{emulateJSON: true})
+                .then(function(response){
+                    res= JSON.parse(response.bodyText);
+                    var url ="http://127.0.0.1:8000/delonix_regia/"+res.user_id+"/";
+                    window.location.href=url;
+                    
+                }).catch(function(){
+                    alert("服务器出小差啦");
+                });
+            }
+            
+        }
+    })
+function getCookie(name){  //获取cookie函数
+    name = name + "=";
+    var start = document.cookie.indexOf(name),
+        value = null;
+    if(start>-1){
+        var end = document.cookie.indexOf(";",start);
+        if(end == -1){
+            end = document.cookie.length;
+        }
+        value = document.cookie.substring(start+name.length,end);
+    }
+    return value;
+}
+</script>
+</body>
+</html>

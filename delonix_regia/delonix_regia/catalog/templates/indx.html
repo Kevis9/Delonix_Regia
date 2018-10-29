@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+</head>
+<body>
+    <div id="login">
+
+    <form @submit.prevent="login_user_in">
+           <input type="text" name="username" placeholder="用户名" v-model="username">
+           <input type="password" name="password" placeholder="密码" v-model="password">
+
+           <button>登陆</button>
+        </form>
+    </div>
+<script>
+    var vm = new Vue({
+        el:"#login",
+        data:{username:'',password:'',hh:"asdasd"},
+        methods:{
+            login_user_in:function(){
+                var url="http://127.0.0.1:8000/data/user/login/";
+                this.$http.get(url); //产生COOKIE 必须先get一次不然会报错csrf not set
+                //sleep(1000) 我认为不需要休息了，这里如果要等待的话，登陆体验就太差了
+                var DjangoCookie=getCookie('csrftoken')
+                var senddate={"username":this.username,"password":this.password};
+                this.$http.post(url,senddate,{headers:{'X-CSRFToken':DjangoCookie}},{emulateJSON: true})
+                .then(function(response){
+                    var res = JSON.parse(response.bodyText);
+                    if(res.msg=='success')
+                        {
+
+                           var url ="http://127.0.0.1:8000/delonix_regia/"+res.user_id+"/";
+                           window.location.href=url; //目前为止我还不清楚怎么实现跳转，那么这里就直接把当前页面修改就好
+                        }
+                    else
+                    {
+                        alert(res.msg);
+                    }
+                    }).catch(function(){
+                        alert("服务器发生错误");
+                    })
+            },
+
+        }
+ })
+    function getCookie(name){  //获取cookie函数
+    name = name + "=";
+    var start = document.cookie.indexOf(name),
+        value = null;
+    if(start>-1){
+        var end = document.cookie.indexOf(";",start);
+        if(end == -1){
+            end = document.cookie.length;
+        }
+        value = document.cookie.substring(start+name.length,end);
+    }
+    return value;
+}
+function sleep(numberMillis) {   //等待函数
+    var now = new Date();
+    var exitTime = now.getTime() + numberMillis;
+    while (true) {
+        now = new Date();
+        if (now.getTime() > exitTime)
+            return;
+    }
+}
+</script>
+</body>
+</html>

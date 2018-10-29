@@ -1,0 +1,8 @@
+{% extends "basic.html" %}
+{% block content %}
+<form method="post">
+{% csrf_token %}
+{{userprofileform}}
+<a href=""><button>提交</button></a>
+</form>
+{%endblock%}

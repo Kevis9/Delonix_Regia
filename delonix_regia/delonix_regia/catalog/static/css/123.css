@@ -1,0 +1,9 @@
+body{
+    /*加载背景图*/
+    background-image：url("../img/凤凰花.jpg");
+     /* 背景图垂直、水平均居中 */
+}
+
+p{
+color: green;
+}

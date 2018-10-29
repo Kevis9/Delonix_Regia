@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+    <script src="vue2517.js"></script>
+    <script src="vueresource105.js"></script>    
+</head>
+<body>
+    <div id="login">        
+           <button v-on:click="haha">哈哈</button>   
+           <p>{{username}}</p>
+    </div>
+<script>
+    var vm = new Vue({
+        el:"#login",
+        data:{username:'1231',password:''},
+        methods:{
+            haha:function(){
+                console.log(1);
+            }
+        }
+    })            
+</script>
+</body>
+</html>
