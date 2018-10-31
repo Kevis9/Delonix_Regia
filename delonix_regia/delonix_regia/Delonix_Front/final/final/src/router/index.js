@@ -63,7 +63,11 @@ const routes = [
     },
     component: MainPage,
     children: [
-     
+      {
+        path:"/user_info_all",
+        name:"user_info_all",
+        component:user_info_all
+     },
       {
         path: '/test2',
         name: 'Test2',
@@ -73,16 +77,12 @@ const routes = [
     
   }, 
   {
-    path:"/user_info_all",
-    name:"user_info_all",
-    component:user_info_all
- },
+    path:"/change_job_info",
+    name:"change_job_info",
+    component:change_job_info
+  }
  
- {
-   path:"/show_pride_info",
-   name:"show_pride_info",
-   component:show_pride_info
- } 
+
  
 ]
 

@@ -101,10 +101,45 @@
         <div style="font-size: 1px;height: 17px; line-height: 17px;"></div><!-- 间隔的空白 -->
         <div class="Yes_no_change_btn">
             <button class="btn1" id="save">保存</button>
-            <button class="btn2" id="quit">取消</button>
+            <button class="btn2" id="quit" @click="hidden">取消</button>
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    name:"JobExperience",
+    data(){
+        return{
+            job1time:"",
+            job2time:"",
+            job3time:"",
+            job4time:"",
+            job5time:"",
+            job6time:"",
+            company1:"",
+            company2:"",
+            company3:"",
+            company4:"",
+            company5:"",
+            company6:"",
+            save:"",
+            qiut:""
+
+        }
+    },
+
+    mounted(){
+
+    },
+
+    methods:{
+        hidden:function(){
+        this.$emit('hidden');
+      }
+    },
+}
+</script>
 
 <style>
 .job_experience{
@@ -116,7 +151,7 @@
         left: 494px; 
         top: 55px; 
         margin-top: 0px;
-        overflow: hidden;
+        overflow: scroll;
         border: 1px solid #aaa;
         box-shadow: 0 0 8px rgba(0,0,0,0.2);
         border-radius: 5px;
@@ -238,35 +273,3 @@
     
 
 </style>
-<script>
-export default {
-    name:"JobExperience",
-    data(){
-        return{
-            job1time:"",
-            job2time:"",
-            job3time:"",
-            job4time:"",
-            job5time:"",
-            job6time:"",
-            company1:"",
-            company2:"",
-            company3:"",
-            company4:"",
-            company5:"",
-            company6:"",
-            save:"",
-            qiut:""
-
-        }
-    },
-
-    mounted(){
-
-    },
-
-    method(){
-
-    },
-}
-</script>

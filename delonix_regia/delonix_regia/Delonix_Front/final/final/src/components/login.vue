@@ -23,8 +23,9 @@
         <label for="checkbox">{{checkbox}}</label>
        </L1>
         <br/>
-       <button id="pass" type="submit">
-        <router-link to="mainpage">登录</router-link>
+
+      <button id="pass" type="submit" @click="login_user_in">
+        登录
        </button>
         <br/>
         <router-view/>

@@ -56,7 +56,7 @@
             <div style="font-size: 1px;height: 17px; line-height: 17px;"></div><!-- 间隔的空白 -->  
             <div class="Yes_no_change_btn">
                 <button class="btn1" id="save">保存</button>
-                <button class="btn2" id="quit">取消</button>
+                <button class="btn2" id="quit" @click="hidden">取消</button>
             </div>
         </div>
     </div>   
@@ -166,17 +166,16 @@ export default {
         return{
             job:"",
             livingplace:"",
-            annualsalary:""
-
+            annualsalary:"",             
         }
+    },   
+    props:["if_show_mask"],
+    components:{
     },
-
-    mounted(){
-
+    methods:{
+        hidden:function(){             
+        this.$emit('hidden');
+      }
     },
-
-    method(){
-
-    },
-}
+    }
 </script>

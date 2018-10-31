@@ -8,12 +8,7 @@
 				<h2 id="englishTitle">Phoenix Nirvana</h2>
 				<button class="button" style="vertical-align:middle"><span><router-link to="LorR">退出登录</router-link></span></button>
 			</div>
-		  </div>
-
-
-          
-       
-
+		  </div>        
           <div id="leftPart">     <!-- wholeleftPart -->
 			<div  class="leftTop">    <!-- lefttop，个人信息 -->
 			<div id="imgAndName">
@@ -34,8 +29,7 @@
 						<textarea id="textArea2" rows="6" cols="20" disabled>汕大牛逼</textarea>
 					</div>
 				</transition>	
-			
-					
+								
 			    	</div>
 			
             
@@ -71,8 +65,8 @@
 								
 							</div>
 	</div>
-	<div id="rightPart">
-           <p>Hello</p>
+	<div id="rightPart" >
+           
 		   <router-view/>
 		</div>
 </div>
@@ -178,12 +172,13 @@ export default {
 	{
 		border:1px solid green;
 		border-radius: 10px;
-		background-color:rgba(255,255,255,0.5);
+		background-color:rgba(255,255,255,0.9);
 		margin-left: 10px;
 		margin-right: 0;
 		width:80.5%;
 		height:87%;
 		float: left;
+		overflow:scroll;
 		
 	}
 .button {
@@ -234,6 +229,7 @@ div#div1{
 	position: absolute;
 	width: 100%;
 	height: 100%;
+
 	/* overflow: hidden; */
 	
 }

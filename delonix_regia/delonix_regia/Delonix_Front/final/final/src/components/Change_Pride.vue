@@ -100,7 +100,7 @@
         <!-- 保存和取消修改 -->
             <div class="Yes_no_change_btn">
                 <button class="btn1">保存</button>
-                <button class="btn2">取消</button>
+                <button class="btn2" @click="hidden">取消</button>
             </div>
     </div>
 </template>
@@ -239,8 +239,10 @@ export default {
 
     },
 
-    method(){
-
+    methods:{
+        hidden:function(){        
+        this.$emit('hidden');
+      }
     },
 }
 </script>

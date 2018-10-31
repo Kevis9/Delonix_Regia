@@ -112,7 +112,7 @@
             <!-- 保存和取消修改 -->
             <div class="Yes_no_change_btn">
                 <button class="btn1" id="save">保存</button>
-                <button class="btn2" id="quit">取消</button>
+                <button class="btn2" id="quit" @click="hidden">取消</button>
             </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
     .basic_information_change{
         font-size: 14px;
         z-index: 1120; 
-        position: relative; 
+        position: absolute;
         width: 506px; 
         opacity: 1; 
         left: 494px; 
@@ -243,8 +243,10 @@ export default {
 
     },
 
-    method(){
-
+    methods:{
+        hidden:function(){        
+        this.$emit('hidden');
+      }
     },
 }
 </script>

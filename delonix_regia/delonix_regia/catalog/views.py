@@ -54,24 +54,37 @@ def get_profile(request,pk):
 
 
 
-@login_required(login_url="/catalog/user/login")
-def update_profile(request,pk):
+@login_required(login_url="/delonix_regia/log_in/")
+def update_top_profile(request,pk):
     get_token(request)
-    user = get_object_or_404(User, pk=pk)
+    user = get_object_or_404(User,pk=pk)
     userprofile = get_object_or_404(Userprofile, user=user)
     if(request.method=="POST"):
         req = simplejson.loads(request.body)
         userprofile.name=req["name"]
         userprofile.phonenumber = req["phonenum"]
         userprofile.save()
+        #数据准备
         req["user_id"]=user.id
         req["name"]=userprofile.name
         req["phonenum"] = userprofile.phonenumber
+        req["gender"] = userprofile.gender
+        req["age"] = userprofile.age
+        req["city"] = userprofile.city
+        req["major"] = userprofile.major
+        req["email"] = userprofile.email
         return JsonResponse(req)
     req={}
+    #数据准备
     req["name"] = userprofile.name
     req["phonenum"] = userprofile.phonenumber
+    req["gender"]=userprofile.gender
+    req["age"] = userprofile.age
+    req["city"] = userprofile.city
+    req["major"] = userprofile.major
+    req["email"] = userprofile.email
     return JsonResponse(req)
+
 
 # 这个地方我们还是要try 因为如果用户首先进入修改页面的话，而且没有这个用户的信息的话，也要先生成一个
 

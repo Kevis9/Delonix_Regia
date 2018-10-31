@@ -16,7 +16,7 @@
         <div style="font-size: 1px;height: 17px; line-height: 17px;"></div><!-- 间隔的空白 -->
         <div class="Yes_no_change_btn">
             <button class="btn1">保存</button>
-            <button class="btn2">取消</button>
+            <button class="btn2" @click="hidden">取消</button>
         </div>
     </div>
 </template>
@@ -105,8 +105,11 @@ export default {
 
     },
 
-    method(){
-
+    methods:{
+        hidden:function(){
+        
+        this.$emit('hidden');
+      }
     },
 }
 </script>

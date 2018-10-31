@@ -1,38 +1,46 @@
 <template>
-    <div class="ShowTopInformation">
+<div>
+    <div class="ShowTopInformation"  @click="pop_change_basicInfo_func">
         <tr>
             <td>
                 <div class="top_infor">
                     <div class="basic_information">
-                        <label for="name" class="name">name</label>
-                        <div style="font-size: 1px;height: 17px; line-height: 17px;"></div>
+                        <label for="name" class="name">五六七</label>
+                        <div style="font-size: 1px;height: 3px; line-height: 17px;"></div>
                         <div class="infor_basic" style="padding-left: 70px; color: #374760;">
-                            <label for="gender">gender&nbsp;&nbsp;</label>
-                            <label for="age">age&nbsp;&nbsp;</label>
-                            <label for="city">city&nbsp;&nbsp;</label>
-                            <label for="learning">learning&nbsp;&nbsp;</label>
-                            <label for="major">major&nbsp;&nbsp;</label>
+                            <label for="gender">性别:男&nbsp;&nbsp;</label>
+                            <label for="age">年龄:28&nbsp;&nbsp;</label>
+                            <label for="city">所在城市:深圳&nbsp;&nbsp;</label>
+                            <br>            
+                            <label for="learning">学历:硕士&nbsp;&nbsp;</label>
+                            <label for="major">专业:计算机科学&nbsp;&nbsp;</label>
                         </div>
                         <div style=" height: 1px; line-height: 1px;"></div> 
                         <div class="infor_basic" style="padding-left: 70px; color: #374760;">
-                            <label for="mobile">mobile&nbsp;&nbsp;</label>
-                            <label for="email">email&nbsp;&nbsp;</label>
+                            <label for="mobile">电话号码:135***0000&nbsp;&nbsp;</label>
+                            
+                            <br>
+                            <label for="email">E-Mail:***@stu.edu.cn&nbsp;&nbsp;</label>
                         </div>    
                     </div>
                 </div>
             </td>
             <td>
                 <div class="photo" id="mainphoto" width=100 height=140;>
-                    <img class="self_photo" src="C:\Users\asus\Desktop\information\src/assets/logo.png">
-                </div>
+                    
+                </div>                
             <td/>
-        </tr>
+        </tr>       
+    </div>
+     <div><basic_information_change v-show="if_show" @hidden="hidden_change_basicInfo_func"></basic_information_change></div>
+         <div><simple_mask v-show="if_show"></simple_mask></div>
+
     </div>
 </template>
 
 <style>
     .ShowTopInformation{
-        padding: 66px 33px 21px 40px; 
+        padding: 3px 33px 21px 40px; 
         color: #ffff;
         line-height: 1;
     }
@@ -66,9 +74,14 @@
         font-weight: bold; 
         line-height: 1; 
     }
+    .ShowTopInformation:hover{
+        background-color:rgba(37, 37, 29, 0.171);
+    }
 </style>
 
 <script>
+import basic_information_change from "@/components/Change_BasicInfo"
+import simple_mask from  "@/components/Simple_Mask"
 export default {
   name: 'ShowTopInformation',
   data(){
@@ -81,17 +94,27 @@ export default {
             learning:"",
             mobile:"",
             email:"",
-            mainphoto:""
+            mainphoto:"",
+            if_show :false
 
         }
     },
-
+    components:{
+        basic_information_change,
+        simple_mask
+    },
     mounted(){
 
     },
 
-    method(){
-
+    methods:{
+        pop_change_basicInfo_func:function(){
+            this.if_show=true;
+        },
+        hidden_change_basicInfo_func:function(){
+            let that = this;
+            that.if_show=false;
+        }
     },
 }
 </script>
